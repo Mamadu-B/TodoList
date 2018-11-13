@@ -33,7 +33,7 @@
                 {{ Session::get('success') }}
             </div>
         @endif
-
+        <div class="row">
         <div class="form-group col-md-12">
             <form action="{{ route('tasks.store') }}" method='POST'>
                 {{ csrf_field() }}
@@ -47,12 +47,14 @@
                 </div>
             </form>
         </div>
+        </div>
 
         {{--Return a list of saved Tasks--}}
         @if(count($savedTasks) > 0)
+        <div class="row">
             <table class="table">
                 <thead class="thead-dark">
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -62,7 +64,7 @@
                     <tr>
                         <th>{{ $savedTask->id }}</th>
                         <td>{{ $savedTask->name }}</td>
-                        <td><a href="{{ route('tasks.edit', ['tasks' => $savedTask->id]) }}" class="btn btn-default">Edit</a></td>
+                        <td><a href="{{ route('tasks.edit', ['tasks' => $savedTask->id]) }}" class="btn btn-info">Edit</a></td>
                         <td>
                             {{--Delete functionality Delete tasks from the table--}}
                             <form action="{{route('tasks.destroy', ['tasks'=> $savedTask ->id]) }}" method="post">
@@ -76,6 +78,7 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
         @endif
     </div>
 </div>
